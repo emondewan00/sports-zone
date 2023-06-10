@@ -20,7 +20,7 @@ const NavBar = () => {
             to="/"
             className="text-2xl hover:text-4xl delay-200 transition-all duration-300 ease-in-out  cursor-pointer"
           >
-            Toy Galaxy
+            Sports Zone
           </Link>
 
           <span
