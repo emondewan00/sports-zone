@@ -13,7 +13,7 @@ const NavBar = () => {
   //   logOut();
   // };
   return (
-    <div className="   bg-primary md:border-b  shadow">
+    <div className=" md:border-b  shadow">
       <nav className="p-5 container mx-auto md:flex md:items-center md:justify-between">
         <div className="flex justify-between items-center ">
           <Link
@@ -31,7 +31,7 @@ const NavBar = () => {
           </span>
         </div>
         <ul
-          className={`md:flex md:items-center bg-primary md:bg-transparent overflow-hidden z-40 md:z-auto absolute md:sticky  w-full left-0  md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100   transition-all ease-in duration-500 gap-2 ${
+          className={`md:flex md:items-center bg-base-100 overflow-hidden z-40 md:z-auto absolute md:sticky  w-full left-0  md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100   transition-all ease-in duration-500 gap-2 ${
             nav ? "top-[70px]" : "top-[-400px]"
           }`}
         >

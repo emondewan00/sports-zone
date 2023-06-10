@@ -4,6 +4,7 @@ import Layout from "../Layout/Layout";
 import Banner from "../pages/Home/Banner/Banner";
 import AllClasses from "../pages/AllClasses/AllClasses";
 import Registration from "../pages/Registration/Registration";
+import Login from "../pages/Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Banner /> },
       { path: "allClass", element: <AllClasses /> },
       { path: "singUp", element: <Registration /> },
+      { path: "login", element: <Login /> },
     ],
   },
 ]);
