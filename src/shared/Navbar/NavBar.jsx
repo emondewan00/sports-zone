@@ -42,6 +42,9 @@ const NavBar = () => {
             <Link to="/allClass">All Class</Link>
           </li>
           <li className="me-2">
+            <Link to="/instructors">Instructors</Link>
+          </li>
+          <li className="me-2">
             <Link to="/selectedClass">Selected Class</Link>
           </li>
           <li className="me-2">

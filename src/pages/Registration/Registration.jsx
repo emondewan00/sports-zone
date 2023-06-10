@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import GoogleLog from "../../shared/googleLOg/GoogleLog";
 
 const Registration = () => {
   const {
@@ -120,7 +121,7 @@ const Registration = () => {
           </div>
         </form>
         <div className="divider"> or</div>
-        <Link to="/login">All ready have an account ?</Link>
+        <Link to="/login">All ready have an account ?</Link> <GoogleLog />
       </div>
     </div>
   );
