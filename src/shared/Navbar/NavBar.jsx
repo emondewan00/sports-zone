@@ -47,6 +47,9 @@ const NavBar = () => {
           <li className="me-2">
             <Link to="/dashbord">Dashbord</Link>
           </li>
+          <li className="me-2">
+            <Link to="/singUp">SingUp</Link>
+          </li>
           {/* {currentUser?.email ? (
             <>
               <li className="me-2">
