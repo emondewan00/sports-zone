@@ -4,7 +4,7 @@ import img from "../../assets/cover-Img.jpg";
 const Card = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 mx-auto max-w-4xl gap-4">
-      <div className="card w-64 bg-base-100 shadow-xl">
+      <div className=" w-64 bg-base-100 shadow-xl">
         <figure>
           <img src={img} className="w-48 mx-auto" alt="Shoes" />
         </figure>
@@ -17,7 +17,7 @@ const Card = () => {
           </div>
         </div>
       </div>
-      <div className="card w-64 bg-base-100 shadow-xl">
+      <div className=" w-64 bg-base-100 shadow-xl">
         <figure>
           <img src={img} className="w-48 mx-auto" alt="Shoes" />
         </figure>
@@ -30,7 +30,7 @@ const Card = () => {
           </div>
         </div>
       </div>
-      <div className="card w-64 bg-base-100 shadow-xl">
+      <div className=" w-64 bg-base-100 shadow-xl">
         <figure>
           <img src={img} className="w-48 mx-auto" alt="Shoes" />
         </figure>
@@ -43,7 +43,7 @@ const Card = () => {
           </div>
         </div>
       </div>
-      <div className="card w-64 bg-base-100 shadow-xl">
+      <div className=" w-64 bg-base-100 shadow-xl">
         <figure>
           <img src={img} className="w-48 mx-auto" alt="Shoes" />
         </figure>
@@ -56,7 +56,7 @@ const Card = () => {
           </div>
         </div>
       </div>
-      <div className="card w-64 bg-base-100 shadow-xl">
+      <div className=" w-64 bg-base-100 shadow-xl">
         <figure>
           <img src={img} className="w-48 mx-auto" alt="Shoes" />
         </figure>
@@ -69,7 +69,7 @@ const Card = () => {
           </div>
         </div>
       </div>
-      <div className="card w-64 bg-base-100 shadow-xl">
+      <div className=" w-64 bg-base-100 shadow-xl">
         <figure>
           <img src={img} className="w-48 mx-auto" alt="Shoes" />
         </figure>

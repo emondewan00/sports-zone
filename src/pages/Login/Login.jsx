@@ -1,30 +1,41 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const { register, watch, handleSubmit, formState } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <div>
       <div className="card flex-shrink-0 w-full max-w-sm mx-auto my-10 shadow-2xl bg-base-100">
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="card-body">
             <div className="form-control">
-              <label className="label">
+              <label className="label" htmlFor="email">
                 <span className="label-text">Email</span>
               </label>
               <input
                 type="text"
                 placeholder="email"
                 className="input input-bordered"
+                name="email"
+                id="email"
+                {...register("email", { required: true })}
               />
             </div>
             <div className="form-control">
-              <label className="label">
+              <label className="label" htmlFor="password">
                 <span className="label-text">Password</span>
               </label>
               <input
                 type="text"
                 placeholder="password"
                 className="input input-bordered"
+                name="password"
+                id="password"
+                {...register("password", { required: true })}
               />
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
