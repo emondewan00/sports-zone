@@ -17,10 +17,13 @@ const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState("");
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
-  const updateUser = (user, name, photo) => {
+  const updateUser = (user, name, photo, address, phone, gender) => {
     updateProfile(user, {
       displayName: name,
       photoURL: photo,
+      phoneNumber:phone,
+      address,
+      gender,
     })
       .then(() => {
         // Profile updated!
@@ -33,10 +36,6 @@ const AuthProvider = ({ children }) => {
   const emailAndPass = (email, password, userName, userPhoto) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
-      // .then((res) => {
-      //   updateUser(res.user, userName, userPhoto);
-      // })
-      // .catch((error) => {});
   };
   const signInWithEmailPass = (email, password) => {
     setLoading(true);
@@ -64,6 +63,7 @@ const AuthProvider = ({ children }) => {
     currentUser,
     googleLogIn,
     signInWithEmailPass,
+    updateUser,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

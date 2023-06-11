@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import GoogleLog from "../../shared/googleLOg/GoogleLog";
+import useAuth from "../../hooks/useAuth";
 
 const Registration = () => {
   const {
@@ -11,10 +12,27 @@ const Registration = () => {
     formState: { errors },
   } = useForm();
   const [passErr, setPassErr] = useState("");
+  const { emailAndPass, updateUser, currentUser } = useAuth();
+  console.log(currentUser);
+
   const onSubmit = (data) => {
-    if (data.password !== data.conFirmPass) {
+    const {
+      password,
+      conFirmPass,
+      email,
+      name,
+      address,
+      gender,
+      phone,
+      photo,
+    } = data;
+    console.log(gender,address)
+    if (password !== conFirmPass) {
       return setPassErr("password is not match");
     }
+    emailAndPass(email, password)
+      .then((res) => updateUser(res.user, name, photo, address, phone, gender))
+      .catch((err) => console.log(err));
   };
   return (
     <div className="my-10">
