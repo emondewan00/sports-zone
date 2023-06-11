@@ -1,22 +1,25 @@
 import { useState } from "react";
 import { FaBookmark, FaSave } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
-import useRole from "../../hooks/useRole";
 import img from "../../assets/control.png";
+import useRole from "../../hooks/useRole";
 
 const SideNav = () => {
   const [open, setOpen] = useState(true);
   const [idx, setIndex] = useState(0);
-  const { data } = useRole();
-  console.log(data);
-  const Menus = [
-    { title: "Selected Class", path: "selectedClasses", icon: <FaBookmark /> },
-    { title: "Enrroled Class", path: "enrroledClasses" },
-    { title: "Payment History", path: "paymentHistorys" },
-    { title: "Add Class", path: "addClass" },
-    { title: "My Classes", path: "myClasses" },
-    { title: "Manage Class", path: "manageClasses" },
-    { title: "Manage User", path: "manageUsers" },
+  const { role = {} } = useRole();
+  let routes = [
+    {
+      title: "Selected Class",
+      path: "selectedClasses",
+      role: "",
+    },
+    { title: "Enrroled Class", path: "enrroledClasses", role: "" },
+    { title: "Payment History", path: "paymentHistorys", role: "" },
+    { title: "Add Class", path: "addClass", role: "instructor" },
+    { title: "My Classes", path: "myClasses", role: "instructor" },
+    { title: "Manage Class", path: "manageClasses", role: "admin" },
+    { title: "Manage User", path: "manageUsers", role: "admin" },
   ];
 
   let content = <span className="loading loading-spinner loading-lg"></span>;
@@ -50,23 +53,22 @@ const SideNav = () => {
           </h1>
         </div>
         <ul className="pt-6">
-          {Menus.map((Menu, index) => (
+          {routes.map((route, index) => (
             <li
               key={index}
               className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-              ${Menu.gap ? "mt-9" : "mt-2"} ${
+              ${route.gap ? "mt-9" : "mt-2"} ${
                 index === idx && "bg-light-white"
               } `}
               onClick={() => setIndex(index)}
             >
-              {/* <img src={`./src/assets/${Menu.src}.png`} /> */}
+              {/* <img src={`./src/assets/${route.src}.png`} /> */}
 
-              {Menu.icon}
-              <Link to={Menu.path}>
+              <Link to={route.path}>
                 <span
                   className={`${!open && "hidden"}  origin-left duration-200`}
                 >
-                  {Menu.title}
+                  {role.role === route.role && route.title}
                 </span>
               </Link>
             </li>

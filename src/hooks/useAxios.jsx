@@ -13,16 +13,27 @@ const useAxios = () => {
 
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
-      console.log(config)
       const token = localStorage.getItem("access_token");
-      console.log(token, "token");
       if (token) {
-        
-        config.headers.Authorization = token;
+        config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
     });
-  }, [axiosSecure]);
+
+    axiosSecure.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        if (
+          error.response &&
+          (error.response.status === 401 || error.response.status === 403)
+        ) {
+          await logOut();
+          navigate("/login");
+        }
+        return Promise.reject(error);
+      }
+    );
+  }, [logOut, navigate, axiosSecure]);
 
   return { axiosSecure };
 };
