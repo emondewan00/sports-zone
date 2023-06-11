@@ -10,6 +10,7 @@ import SelectedClass from "../pages/SelectedClass/SelectedClass";
 import SideNav from "../shared/sideBar/SideNav";
 import PrivetRoute from "./PrivetRoute";
 import EnrroledClass from "../pages/Enrroled/EnrroledClass";
+import AddClass from "../pages/AddClass/AddClass";
 
 const router = createBrowserRouter([
   {
@@ -34,12 +35,16 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "selectedClass",
+        path: "selectedClasses",
         element: <SelectedClass />,
       },
       {
-        path: "enrroledClass",
+        path: "enrroledClasses",
         element: <EnrroledClass />,
+      },
+      {
+        path: "addClass",
+        element: <AddClass />,
       },
     ],
   },

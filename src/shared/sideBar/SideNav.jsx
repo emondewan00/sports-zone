@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaBookmark, FaSave } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
 import useRole from "../../hooks/useRole";
+import img from "../../assets/control.png";
 
 const SideNav = () => {
   const [open, setOpen] = useState(true);
@@ -9,9 +10,13 @@ const SideNav = () => {
   const { data } = useRole();
   console.log(data);
   const Menus = [
-    { title: "Selected Class", path: "selectedClass", icon: <FaBookmark /> },
-    { title: "Enrroled Class", path: "enrroledClass" },
-    { title: "Payment History" },
+    { title: "Selected Class", path: "selectedClasses", icon: <FaBookmark /> },
+    { title: "Enrroled Class", path: "enrroledClasses" },
+    { title: "Payment History", path: "paymentHistorys" },
+    { title: "Add Class", path: "addClass" },
+    { title: "My Classes", path: "myClasses" },
+    { title: "Manage Class", path: "manageClasses" },
+    { title: "Manage User", path: "manageUsers" },
   ];
 
   let content = <span className="loading loading-spinner loading-lg"></span>;
@@ -24,7 +29,7 @@ const SideNav = () => {
         } bg-dark-purple h-screen p-5  pt-8 relative duration-300`}
       >
         <img
-          src="./src/assets/control.png"
+          src={img}
           className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
            border-2 rounded-full  ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
