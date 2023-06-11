@@ -22,7 +22,25 @@ const SideNav = () => {
     { title: "Manage User", path: "manageUsers", role: "admin" },
   ];
 
-  let content = <span className="loading loading-spinner loading-lg"></span>;
+  let content = routes.map((route, index) => {
+    const c = role.role === route.role && (
+      <li
+        key={index}
+        className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
+    ${route.gap ? "mt-9" : "mt-2"} ${index === idx && "bg-light-white"} `}
+        onClick={() => setIndex(index)}
+      >
+        {/* <img src={`./src/assets/${route.src}.png`} /> */}
+
+        <Link to={route.path}>
+          <span className={`${!open && "hidden"}  origin-left duration-200`}>
+            {route.title}
+          </span>
+        </Link>
+      </li>
+    );
+    return c;
+  });
 
   return (
     <div className="flex">
@@ -52,28 +70,7 @@ const SideNav = () => {
             <Link to="/">Sports Zone</Link>
           </h1>
         </div>
-        <ul className="pt-6">
-          {routes.map((route, index) => (
-            <li
-              key={index}
-              className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-              ${route.gap ? "mt-9" : "mt-2"} ${
-                index === idx && "bg-light-white"
-              } `}
-              onClick={() => setIndex(index)}
-            >
-              {/* <img src={`./src/assets/${route.src}.png`} /> */}
-
-              <Link to={route.path}>
-                <span
-                  className={`${!open && "hidden"}  origin-left duration-200`}
-                >
-                  {role.role === route.role && route.title}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <ul className="pt-6">{content}</ul>
       </div>
       <div className="h-screen flex-1 p-7">
         {/* <h1 className="text-2xl font-semibold ">Home Page</h1> */}

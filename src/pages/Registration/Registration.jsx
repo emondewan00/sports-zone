@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleLog from "../../shared/googleLOg/GoogleLog";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
@@ -15,6 +15,7 @@ const Registration = () => {
   } = useForm();
   const [passErr, setPassErr] = useState("");
   const { emailAndPass, updateUser, currentUser } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     const {
@@ -44,7 +45,7 @@ const Registration = () => {
       })
       .then((res) => {
         Success("success", "Account created successfully!");
-        console.log(res.data);
+        navigate("/");
         localStorage.setItem("access_token", res.data.access_token);
       })
       .catch((err) => console.log(err));
@@ -103,7 +104,7 @@ const Registration = () => {
                   required: true,
                   minLength: 6,
                   maxLength: 12,
-                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                  pattern: /^(?=.*[A-Z])(?=.*[!@#$%^&*()_\-+=<>?]).{6,}$/,
                 })}
               />
             </div>
@@ -156,6 +157,9 @@ const Registration = () => {
               type="submit"
               value="Submit"
             />
+            <h1 className="text-xl text-center my-4  text-red-600">
+              {passErr}
+            </h1>
           </div>
         </form>
         <div className="divider"> or</div>

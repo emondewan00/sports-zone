@@ -14,7 +14,6 @@ const useRole =  () => {
       return res.data[0];
     },
   });
-  console.log(role,"log data")
   return {role};
 };
 

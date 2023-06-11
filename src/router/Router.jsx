@@ -12,6 +12,7 @@ import PrivetRoute from "./PrivetRoute";
 import EnrroledClass from "../pages/Enrroled/EnrroledClass";
 import AddClass from "../pages/AddClass/AddClass";
 import MyClasses from "../pages/MyClasses/MyClasses";
+import DashbordHome from "../pages/DashbordHome/DashbordHome";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       </PrivetRoute>
     ),
     children: [
+      {
+        path: "",
+        element: <DashbordHome />,
+      },
       {
         path: "selectedClasses",
         element: <SelectedClass />,
