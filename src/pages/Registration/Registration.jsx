@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import GoogleLog from "../../shared/googleLOg/GoogleLog";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import Success from "../../message/Success";
 
 const Registration = () => {
   const {
@@ -13,7 +15,6 @@ const Registration = () => {
   } = useForm();
   const [passErr, setPassErr] = useState("");
   const { emailAndPass, updateUser, currentUser } = useAuth();
-  console.log(currentUser);
 
   const onSubmit = (data) => {
     const {
@@ -26,12 +27,22 @@ const Registration = () => {
       phone,
       photo,
     } = data;
-    console.log(gender,address)
     if (password !== conFirmPass) {
       return setPassErr("password is not match");
     }
     emailAndPass(email, password)
       .then((res) => updateUser(res.user, name, photo, address, phone, gender))
+      .catch((err) => console.log(err));
+    axios
+      .post("http://localhost:4999/users", {
+        name,
+        address,
+        gender,
+        email,
+        phone,
+        photo,
+      })
+      .then((res) => Success("success", "Account created successfully!"))
       .catch((err) => console.log(err));
   };
   return (

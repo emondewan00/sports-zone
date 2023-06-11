@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FaGoogle } from "react-icons/fa";
-import { AuthContext } from "../../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const GoogleLog = () => {
-  const { googleLogIn } = useContext(AuthContext);
+  const { googleLogIn } = useAuth();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || "/";
   const googleLog = () => {

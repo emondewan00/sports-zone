@@ -7,6 +7,7 @@ import Registration from "../pages/Registration/Registration";
 import Login from "../pages/Login/Login";
 import Instructors from "../pages/Instructors/Instructors";
 import SelectedClass from "../pages/SelectedClass/SelectedClass";
+import SideNav from "../shared/sideBar/SideNav";
 
 const router = createBrowserRouter([
   {
@@ -22,5 +23,6 @@ const router = createBrowserRouter([
       { path: "selectedClass", element: <SelectedClass /> },
     ],
   },
+  { path: "/dashbord", element: <SideNav />, children: [{}] },
 ]);
 export default router;

@@ -3,7 +3,7 @@ import Card from "../../shared/Card/Card";
 
 const SelectedClass = () => {
   return (
-    <div>
+    <div className="my-10">
       <Card />
     </div>
   );

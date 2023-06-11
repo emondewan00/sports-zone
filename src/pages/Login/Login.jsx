@@ -1,11 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const { register, watch, handleSubmit, formState } = useForm();
+  const { signInWithEmailPass } = useAuth();
   const onSubmit = (data) => {
-    console.log(data);
+    signInWithEmailPass(data.email, data.password);
   };
   return (
     <div>
@@ -30,7 +32,7 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="password"
                 className="input input-bordered"
                 name="password"

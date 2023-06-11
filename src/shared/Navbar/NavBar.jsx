@@ -1,17 +1,18 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiMenu } from "react-icons/hi";
-// import { AuthContext } from "../../Provider/AuthProvider";
+import useAuth from "../../hooks/useAuth";
 
 const NavBar = () => {
   const [nav, setNav] = useState(false);
-  // const { currentUser, logOut } = useContext(AuthContext);
+  const { logOut, currentUser } = useAuth();
+
   const menuHandler = () => {
     setNav(!nav);
   };
-  // const logOutHandler = () => {
-  //   logOut();
-  // };
+  const logOutHandler = () => {
+    logOut();
+  };
   return (
     <div className=" md:border-b  shadow">
       <nav className="p-5 container mx-auto md:flex md:items-center md:justify-between">
@@ -45,15 +46,9 @@ const NavBar = () => {
             <Link to="/instructors">Instructors</Link>
           </li>
           <li className="me-2">
-            <Link to="/selectedClass">Selected Class</Link>
-          </li>
-          <li className="me-2">
             <Link to="/dashbord">Dashbord</Link>
           </li>
-          <li className="me-2">
-            <Link to="/singUp">SingUp</Link>
-          </li>
-          {/* {currentUser?.email ? (
+          {currentUser?.email ? (
             <>
               <li className="me-2">
                 <div className="avatar">
@@ -78,7 +73,7 @@ const NavBar = () => {
                 <Link to="/login">Login</Link>
               </button>
             </li>
-          )} */}
+          )}
         </ul>
       </nav>
     </div>
