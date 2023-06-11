@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const AddClass = () => {
   const { register, handleSubmit, reset, formState } = useForm();
+  const { currentUser } = useAuth();
   const onSubmit = (data) => {
     console.log(data);
   };
@@ -46,6 +48,7 @@ const AddClass = () => {
                 placeholder="Enter Instructor name "
                 name="Instructor name"
                 {...register("instructorName", { required: true })}
+                defaultValue={currentUser?.displayName}
                 readOnly
               />
             </div>
@@ -63,6 +66,7 @@ const AddClass = () => {
                 type="text"
                 placeholder="Enter Instructor Email "
                 name="instructorEmail"
+                defaultValue={currentUser?.email}
                 {...register("instructorEmail", { required: true })}
                 readOnly
               />

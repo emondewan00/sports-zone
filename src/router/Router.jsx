@@ -11,6 +11,7 @@ import SideNav from "../shared/sideBar/SideNav";
 import PrivetRoute from "./PrivetRoute";
 import EnrroledClass from "../pages/Enrroled/EnrroledClass";
 import AddClass from "../pages/AddClass/AddClass";
+import MyClasses from "../pages/MyClasses/MyClasses";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "addClass",
         element: <AddClass />,
+      },
+      {
+        path: "myClasses",
+        element: <MyClasses />,
       },
     ],
   },
