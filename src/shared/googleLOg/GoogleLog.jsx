@@ -2,6 +2,7 @@ import React from "react";
 import { FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 const GoogleLog = () => {
   const { googleLogIn } = useAuth();
@@ -10,13 +11,24 @@ const GoogleLog = () => {
   const googleLog = () => {
     googleLogIn()
       .then((res) => {
+        const { displayName, photoURL, phoneNumber, email } = res.user;
+        axios
+          .post("http://localhost:4999/users", {
+            name: displayName,
+            photo: photoURL,
+            phone: phoneNumber,
+            email,
+          })
+          .then((res) =>
+            localStorage.setItem("access_token", res.data.access_token)
+          )
+          .catch((err) => console.log(err));
         navigate(from);
       })
       .catch((err) => console.log(err));
   };
   return (
     <>
-      <div className="divider after:bg-blue-600 before:bg-blue-600">OR</div>
       <p className="flex justify-center gap-x-3" onClick={googleLog}>
         <span className="bg-white/10 p-3 rounded-full cursor-pointer">
           <FaGoogle />

@@ -42,7 +42,11 @@ const Registration = () => {
         phone,
         photo,
       })
-      .then((res) => Success("success", "Account created successfully!"))
+      .then((res) => {
+        Success("success", "Account created successfully!");
+        console.log(res.data);
+        localStorage.setItem("access_token", res.data.access_token);
+      })
       .catch((err) => console.log(err));
   };
   return (
@@ -95,7 +99,12 @@ const Registration = () => {
                 className="  p-2 outline-none w-full "
                 name="password"
                 id="password"
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 12,
+                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                })}
               />
             </div>
             <div className="">

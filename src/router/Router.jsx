@@ -8,6 +8,8 @@ import Login from "../pages/Login/Login";
 import Instructors from "../pages/Instructors/Instructors";
 import SelectedClass from "../pages/SelectedClass/SelectedClass";
 import SideNav from "../shared/sideBar/SideNav";
+import PrivetRoute from "./PrivetRoute";
+import EnrroledClass from "../pages/Enrroled/EnrroledClass";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,23 @@ const router = createBrowserRouter([
       { path: "selectedClass", element: <SelectedClass /> },
     ],
   },
-  { path: "/dashbord", element: <SideNav />, children: [{}] },
+  {
+    path: "/dashbord",
+    element: (
+      <PrivetRoute>
+        <SideNav />
+      </PrivetRoute>
+    ),
+    children: [
+      {
+        path: "selectedClass",
+        element: <SelectedClass />,
+      },
+      {
+        path: "enrroledClass",
+        element: <EnrroledClass />,
+      },
+    ],
+  },
 ]);
 export default router;

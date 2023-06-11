@@ -17,13 +17,11 @@ const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState("");
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
-  const updateUser = (user, name, photo, address, phone, gender) => {
+  const updateUser = (user, name, photo, phone) => {
     updateProfile(user, {
       displayName: name,
       photoURL: photo,
       phoneNumber:phone,
-      address,
-      gender,
     })
       .then(() => {
         // Profile updated!

@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { FaBookmark, FaSave } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
+import useRole from "../../hooks/useRole";
 
 const SideNav = () => {
   const [open, setOpen] = useState(true);
   const [idx, setIndex] = useState(0);
+  const { data } = useRole();
+  console.log(data);
   const Menus = [
-    { title: "Selected Class", icon: <FaBookmark /> },
-    { title: "Enrroled Class" },
+    { title: "Selected Class", path: "selectedClass", icon: <FaBookmark /> },
+    { title: "Enrroled Class", path: "enrroledClass" },
     { title: "Payment History" },
   ];
-  console.log(idx);
+
+  let content = <span className="loading loading-spinner loading-lg"></span>;
+
   return (
     <div className="flex">
       <div
@@ -50,10 +55,15 @@ const SideNav = () => {
               onClick={() => setIndex(index)}
             >
               {/* <img src={`./src/assets/${Menu.src}.png`} /> */}
+
               {Menu.icon}
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                {Menu.title}
-              </span>
+              <Link to={Menu.path}>
+                <span
+                  className={`${!open && "hidden"}  origin-left duration-200`}
+                >
+                  {Menu.title}
+                </span>
+              </Link>
             </li>
           ))}
         </ul>

@@ -11,6 +11,7 @@ const NavBar = () => {
     setNav(!nav);
   };
   const logOutHandler = () => {
+    localStorage.clear("access_token");
     logOut();
   };
   return (

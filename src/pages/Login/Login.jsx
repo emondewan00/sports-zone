@@ -2,12 +2,24 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import GoogleLog from "../../shared/googleLOg/GoogleLog";
+import axios from "axios";
 
 const Login = () => {
   const { register, watch, handleSubmit, formState } = useForm();
   const { signInWithEmailPass } = useAuth();
   const onSubmit = (data) => {
-    signInWithEmailPass(data.email, data.password);
+    const { email, password } = data;
+    signInWithEmailPass(email, password)
+      .then((res) => {
+        axios
+          .post("http://localhost:4999/users", { email })
+          .then((res) =>
+            localStorage.setItem("access_token", res.data.access_token)
+          )
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <div>
@@ -52,7 +64,7 @@ const Login = () => {
         </form>
         <div className="p-6 pt-0">
           <div className="divider"> or </div>
-          <Link to="/singUp">Register Now?</Link>
+          <Link to="/singUp">Register Now?</Link> <GoogleLog />
         </div>
       </div>
     </div>
