@@ -32,11 +32,11 @@ const AuthProvider = ({ children }) => {
   };
   const emailAndPass = (email, password, userName, userPhoto) => {
     setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password)
-      .then((res) => {
-        updateUser(res.user, userName, userPhoto);
-      })
-      .catch((error) => {});
+    return createUserWithEmailAndPassword(auth, email, password);
+      // .then((res) => {
+      //   updateUser(res.user, userName, userPhoto);
+      // })
+      // .catch((error) => {});
   };
   const signInWithEmailPass = (email, password) => {
     setLoading(true);
