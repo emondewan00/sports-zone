@@ -6,16 +6,16 @@ import useRole from "../../hooks/useRole";
 
 const SideNav = () => {
   const [open, setOpen] = useState(true);
-  const [idx, setIndex] = useState(0);
+  const [idx, setIndex] = useState("");
   const { role = {} } = useRole();
   let routes = [
     {
       title: "Selected Class",
       path: "selectedClasses",
-      role: "",
+      role: "user",
     },
-    { title: "Enrroled Class", path: "enrroledClasses", role: "" },
-    { title: "Payment History", path: "paymentHistorys", role: "" },
+    { title: "Enrroled Class", path: "enrroledClasses", role: "user" },
+    { title: "Payment History", path: "paymentHistorys", role: "user" },
     { title: "Add Class", path: "addClass", role: "instructor" },
     { title: "My Classes", path: "myClasses", role: "instructor" },
     { title: "Manage Class", path: "manageClasses", role: "admin" },
@@ -30,8 +30,6 @@ const SideNav = () => {
     ${route.gap ? "mt-9" : "mt-2"} ${index === idx && "bg-light-white"} `}
         onClick={() => setIndex(index)}
       >
-        {/* <img src={`./src/assets/${route.src}.png`} /> */}
-
         <Link to={route.path}>
           <span className={`${!open && "hidden"}  origin-left duration-200`}>
             {route.title}
@@ -56,12 +54,6 @@ const SideNav = () => {
           onClick={() => setOpen(!open)}
         />
         <div className="flex gap-x-4 items-center">
-          {/* <img
-            src="./src/assets/logo.png"
-            className={`cursor-pointer duration-500 ${
-              open && "rotate-[360deg]"
-            }`}
-          /> */}
           <h1
             className={`text-white origin-left font-medium text-xl duration-200 ${
               !open && "scale-0"

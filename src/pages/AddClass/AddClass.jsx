@@ -1,12 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import useAxios from "../../hooks/useAxios";
 
 const AddClass = () => {
   const { register, handleSubmit, reset, formState } = useForm();
   const { currentUser } = useAuth();
-  const onSubmit = (data) => {
-    console.log(data);
+  const { axiosSecure } = useAxios();
+  const onSubmit = async (data) => {
+    const res = await axiosSecure.post("/classes", data);
+    console.log(res);
   };
   return (
     <div className="container m-auto  max-w-4xl p-8 my-24 border shadow-md rounded">

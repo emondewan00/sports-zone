@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import GoogleLog from "../../shared/googleLOg/GoogleLog";
 import axios from "axios";
@@ -8,21 +8,26 @@ import axios from "axios";
 const Login = () => {
   const { register, watch, handleSubmit, formState } = useForm();
   const { signInWithEmailPass } = useAuth();
+  const [loginErr, setLoginErr] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const onSubmit = (data) => {
     const { email, password } = data;
     signInWithEmailPass(email, password)
       .then((res) => {
         axios
           .post("http://localhost:4999/users", { email })
-          .then((res) =>
-            localStorage.setItem("access_token", res.data.access_token)
-          )
-          .catch((err) => console.log(err));
+          .then((res) => {
+            navigate(from);
+            localStorage.setItem("access_token", res.data.access_token);
+          })
+          .catch((err) => setLoginErr("login failed"));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setLoginErr("login failed"));
   };
   return (
-    <div>
+    <div className="flex h-[90vh] justify-center items-center">
       <div className="card flex-shrink-0 w-full max-w-sm mx-auto my-10 shadow-2xl bg-base-100">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="card-body">
@@ -59,6 +64,7 @@ const Login = () => {
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
+              <p className="text-red-600">{loginErr}</p>
             </div>
           </div>
         </form>

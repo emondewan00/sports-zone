@@ -3,7 +3,7 @@ import img from "../../assets/cover-Img.jpg";
 
 const Card = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 mx-auto max-w-4xl gap-4">
+    <div className="grid grid-cols-1 justify-items-center md:grid-cols-3 mx-auto max-w-4xl gap-4">
       <div className=" w-64 bg-base-100 shadow-xl ">
         <figure>
           <img src={img} className="h-[200px] w-full object-cover" alt="Shoes" />
