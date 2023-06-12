@@ -15,7 +15,7 @@ const NavBar = () => {
     logOut();
   };
   return (
-    <div className=" md:border-b  shadow">
+    <div className=" shadow">
       <nav className="p-5 container mx-auto md:flex md:items-center md:justify-between">
         <div className="flex justify-between items-center ">
           <Link

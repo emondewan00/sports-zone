@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
+import Success from "../../message/Success";
 
 const AddClass = () => {
   const { register, handleSubmit, reset, formState } = useForm();
@@ -9,7 +10,9 @@ const AddClass = () => {
   const { axiosSecure } = useAxios();
   const onSubmit = async (data) => {
     const res = await axiosSecure.post("/classes", data);
-    console.log(res);
+    if (res.status === 200) {
+      Success("success", "Successfully add a new class");
+    }
   };
   return (
     <div className="container m-auto  max-w-4xl p-8 my-24 border shadow-md rounded">

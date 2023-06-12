@@ -5,6 +5,7 @@ import "swiper/css/bundle";
 import PopularClass from "../PopularClass/PopularClass";
 import img from "../../../assets/cover-Img.jpg";
 import PopularInstructor from "../PopularInstructor/PopularInstructor";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -30,7 +31,7 @@ const Banner = () => {
                       Play with heart, compete with fire, and leave it all on
                       the field.
                     </h1>
-                    <button className="btn btn-secondary">See Classes</button>
+                    <Link to="/allClass" className="btn btn-secondary">See Classes</Link>
                   </div>
                 </div>
               </div>
@@ -49,7 +50,7 @@ const Banner = () => {
                     <h1 className="text-3xl text-white capitalize">
                       Push your limits, break barriers, and achieve greatness
                     </h1>
-                    <button className="btn btn-secondary">See Classes</button>
+                    <Link to="/allClass" className="btn btn-secondary">See Classes</Link>
                   </div>
                 </div>
               </div>
@@ -68,7 +69,7 @@ const Banner = () => {
                     <h1 className="text-3xl text-white capitalize">
                       Embrace the thrill of victory and the sweat of hard work.
                     </h1>
-                    <button className="btn btn-secondary">See Classes</button>
+                    <Link to="/allClass" className="btn btn-secondary">See Classes</Link>
                   </div>
                 </div>
               </div>
@@ -87,7 +88,7 @@ const Banner = () => {
                     <h1 className="text-3xl text-white capitalize">
                       Sports: where legends are made and dreams become reality.
                     </h1>
-                    <button className="btn btn-secondary">See Classes</button>
+                    <Link to="/allClass" className="btn btn-secondary">See Classes</Link>
                   </div>
                 </div>
               </div>
