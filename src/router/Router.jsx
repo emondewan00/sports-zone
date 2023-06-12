@@ -13,6 +13,9 @@ import EnrroledClass from "../pages/Enrroled/EnrroledClass";
 import AddClass from "../pages/AddClass/AddClass";
 import MyClasses from "../pages/MyClasses/MyClasses";
 import DashbordHome from "../pages/DashbordHome/DashbordHome";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import UserRoute from "./UserRoute";
 
 const router = createBrowserRouter([
   {
@@ -38,23 +41,43 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <DashbordHome />,
+        element: (
+          <PrivetRoute>
+            <DashbordHome />
+          </PrivetRoute>
+        ),
       },
       {
         path: "selectedClasses",
-        element: <SelectedClass />,
+        element: (
+          <UserRoute>
+            <SelectedClass />
+          </UserRoute>
+        ),
       },
       {
         path: "enrroledClasses",
-        element: <EnrroledClass />,
+        element: (
+          <UserRoute>
+            <EnrroledClass />
+          </UserRoute>
+        ),
       },
       {
         path: "addClass",
-        element: <AddClass />,
+        element: (
+          <InstructorRoute>
+            <AddClass />
+          </InstructorRoute>
+        ),
       },
       {
         path: "myClasses",
-        element: <MyClasses />,
+        element: (
+          <InstructorRoute>
+            <MyClasses />
+          </InstructorRoute>
+        ),
       },
     ],
   },
