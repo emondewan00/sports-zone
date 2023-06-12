@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
+import Success from "../../message/Success";
 import { FaPen, FaTrash } from "react-icons/fa";
 const MyClasses = () => {
   const { currentUser } = useAuth();
@@ -15,10 +16,16 @@ const MyClasses = () => {
       return res.data;
     },
   });
-  const deleteHandler = async (id) => {
-    const res = await axiosSecure.delete(`/classes/delete/${id}`);
-    refetch();
-  };
+  const { mutate, isError, isLoading } = useMutation({
+    mutationFn: async (id) => {
+      const res = await axiosSecure.delete(`/classes/delete/${id}`);
+      if (res.data.deletedCount > 0) {
+        Success("success", "Class Delete SuccessFully!");
+        refetch();
+      }
+      return res.data;
+    },
+  });
   return (
     <div className="max-w-4xl mx-auto">
       <h1 className="text-center text-3xl my-4">My Classes</h1>
@@ -69,7 +76,7 @@ const MyClasses = () => {
                   <p className="capitalize">{c.status}</p>
                 </th>
                 <td>
-                  <button onClick={() => deleteHandler(c._id)} className="btn">
+                  <button onClick={() => mutate(c._id)} className="btn">
                     <FaTrash />
                   </button>
                 </td>
