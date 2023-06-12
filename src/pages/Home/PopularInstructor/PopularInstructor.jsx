@@ -16,7 +16,11 @@ const PopularInstructor = () => {
       <h1 className="text-3xl my-4">Popular Instructors</h1>
       <div className="grid grid-cols-1 justify-items-center md:grid-cols-3 mx-auto max-w-4xl gap-4">
         {data.map((ins) => (
-          <InstructorsCard key={ins._id} instructor={ins} />
+          <InstructorsCard key={ins._id} instructor={ins}>
+            <button className="px-5 bg-base-200 py-2 font-semibold hover:bg-base-300 rounded">
+              All Instructors
+            </button>
+          </InstructorsCard>
         ))}
       </div>
     </div>

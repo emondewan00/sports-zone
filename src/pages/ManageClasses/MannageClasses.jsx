@@ -1,24 +1,19 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
-import { FaPen } from "react-icons/fa";
-const MyClasses = () => {
-  const { currentUser } = useAuth();
+
+const MannageClasses = () => {
   const { axiosSecure } = useAxios();
-  const { data: myClasses = [], refetch } = useQuery({
-    queryKey: ["myClasses", currentUser?.email],
+  const { data = [] } = useQuery({
+    queryKey: ["classes"],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `/classes/myClasses/${currentUser?.email}`
-      );
+      const res = await axiosSecure("/classes");
       return res.data;
     },
   });
-
   return (
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-center text-3xl my-4">My Classes</h1>
+      <h1 className="text-center text-3xl my-4">All Classes</h1>
       <div className="overflow-x-auto">
         <table className="table">
           <thead className="bg-primary text-white ">
@@ -29,12 +24,12 @@ const MyClasses = () => {
               <th>Available seats</th>
               <th>Price</th>
               <th>Status</th>
-              <th>Enrroled Stadunts</th>
               <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            {myClasses.map((c, idx) => (
+            {data.map((c, idx) => (
               <tr key={c._id}>
                 <th>{idx + 1}</th>
                 <td>
@@ -63,14 +58,27 @@ const MyClasses = () => {
                   <p className="text-end">${c.price}</p>
                 </th>
                 <th>
-                  <p className="capitalize">{c.status}</p>
+                  <select
+                    name="gender"
+                    className="  p-2 outline-none w-full "
+                    id="gender"
+                    defaultValue={c.status}
+                  >
+                    <option value="aprove">Aprove</option>
+                    <option value="reject">Reject</option>
+                    <option value="pending">Pending</option>
+                  </select>
                 </th>
-                <td><p className="text-center">{c.totalStudent}</p></td>
+                {/* <td>
+                  <button onClick={() => mutate(c._id)} className="btn">
+                    <FaTrash />
+                  </button>
+                </td>
                 <td>
                   <button className="btn">
                     <FaPen />
                   </button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>
@@ -80,4 +88,4 @@ const MyClasses = () => {
   );
 };
 
-export default MyClasses;
+export default MannageClasses;

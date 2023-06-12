@@ -9,6 +9,7 @@ const InstructorRoute = ({ children }) => {
   if (loading || isLoading) {
     return <progress className="progress w-56"></progress>;
   }
+  console.log(role)
   if (currentUser && role?.role === "instructor") {
     return children;
   } else {

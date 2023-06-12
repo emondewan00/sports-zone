@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import "swiper/css/bundle";
 import PopularClass from "../PopularClass/PopularClass";
-import img from "../../../assets/cover-Img.jpg";
+import CustomerReview from "../Review/CustomerReview";
 import PopularInstructor from "../PopularInstructor/PopularInstructor";
 import { Link } from "react-router-dom";
 
@@ -71,6 +71,7 @@ const Banner = () => {
       </div>
       <PopularClass />
       <PopularInstructor />
+      <CustomerReview />
     </div>
   );
 };

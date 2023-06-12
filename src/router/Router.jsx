@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
 import Layout from "../Layout/Layout";
 import Banner from "../pages/Home/Banner/Banner";
+import Error from "../pages/err/Error";
 import AllClasses from "../pages/AllClasses/AllClasses";
 import Registration from "../pages/Registration/Registration";
 import Login from "../pages/Login/Login";
@@ -16,11 +16,14 @@ import DashbordHome from "../pages/DashbordHome/DashbordHome";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import UserRoute from "./UserRoute";
+import ManageUsers from "../pages/ManageUsers/ManageUsers";
+import MannageClasses from "../pages/ManageClasses/MannageClasses";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    // errorElement: <Error />,
     children: [
       { path: "/", element: <Banner /> },
       { path: "allClass", element: <AllClasses /> },
@@ -28,7 +31,6 @@ const router = createBrowserRouter([
       { path: "login", element: <Login /> },
       { path: "instructors", element: <Instructors /> },
       { path: "instructors", element: <Instructors /> },
-      { path: "selectedClass", element: <SelectedClass /> },
     ],
   },
   {
@@ -77,6 +79,22 @@ const router = createBrowserRouter([
           <InstructorRoute>
             <MyClasses />
           </InstructorRoute>
+        ),
+      },
+      {
+        path: "manageUsers",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageClasses",
+        element: (
+          <AdminRoute>
+            <MannageClasses />
+          </AdminRoute>
         ),
       },
     ],
