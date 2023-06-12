@@ -32,26 +32,29 @@ const Registration = () => {
       return setPassErr("password is not match");
     }
     emailAndPass(email, password)
-      .then((res) => updateUser(res.user, name, photo, address, phone, gender))
-      .catch((err) => console.log(err));
-    axios
-      .post("http://localhost:4999/users", {
-        name,
-        address,
-        gender,
-        email,
-        phone,
-        photo,
-      })
       .then((res) => {
-        Success("success", "Account created successfully!");
-        navigate("/");
-        localStorage.setItem("access_token", res.data.access_token);
+        updateUser(res.user, name, photo, address, phone, gender);
+        axios
+          .post("http://localhost:4999/users", {
+            name,
+            address,
+            gender,
+            email,
+            phone,
+            photo,
+          })
+          .then((res) => {
+            console.log(res);
+            Success("success", "Account created successfully!");
+            navigate("/");
+            localStorage.setItem("access_token", res.data.access_token);
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
   return (
-    <div className="flex h-[90vh] justify-center items-center">
+    <div className="flex h-[90vh] relative justify-center items-center">
       <div className=" bg-gray-200 max-w-3xl mx-auto shadow-md px-20 py-10">
         <h1 className="text-3xl text-center my-4 ">SingUp</h1>
         <form onSubmit={handleSubmit(onSubmit)}>

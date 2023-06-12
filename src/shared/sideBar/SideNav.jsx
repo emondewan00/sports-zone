@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { FaBookmark, FaSave } from "react-icons/fa";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import img from "../../assets/control.png";
 import useRole from "../../hooks/useRole";
 
 const SideNav = () => {
   const [open, setOpen] = useState(true);
-  const [idx, setIndex] = useState("");
+  const initialpath =useLocation()
+  const pth=initialpath?.pathname.split("/")[2] 
+  const [path, setPath] = useState(pth);
   const { role = {} } = useRole();
   let routes = [
     {
@@ -27,8 +29,8 @@ const SideNav = () => {
       <li
         key={index}
         className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-    ${route.gap ? "mt-9" : "mt-2"} ${index === idx && "bg-light-white"} `}
-        onClick={() => setIndex(index)}
+    ${route.gap ? "mt-9" : "mt-2"} ${route.path === path && "bg-light-white"} `}
+        onClick={() => setPath(route.path)}
       >
         <Link to={route.path}>
           <span className={`${!open && "hidden"}  origin-left duration-200`}>

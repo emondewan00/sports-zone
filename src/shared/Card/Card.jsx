@@ -1,12 +1,12 @@
 import React from "react";
-import img from "../../assets/cover-Img.jpg";
 
-const Card = ({ c }) => {
+
+const Card = ({ c, children }) => {
   const {
-    className,
     image,
     instructorEmail,
     instructorName,
+    className,
     price,
     availableSeats,
   } = c || {};
@@ -20,7 +20,7 @@ const Card = ({ c }) => {
         />
       </figure>
       <div className="px-4 my-4 space-y-1">
-        <h2 className="card-title">{className}</h2>
+        <h2 className="card-title font-serif">{className}</h2>
         <p className="text-md">Techer:{instructorName}</p>
         <p className="text-sm">Techer Email:{instructorEmail}</p>
         <ul className="flex justify-between ">
@@ -28,7 +28,9 @@ const Card = ({ c }) => {
           <li>Av Seats:{availableSeats}</li>
         </ul>
         <div className="card-actions justify-end">
-          <button className="px-5 bg-base-200 py-2 font-semibold hover:bg-base-300 rounded">Select</button>
+          <button  className="px-5 bg-base-200 py-2 font-semibold hover:bg-base-300 rounded">
+            Select
+          </button>
         </div>
       </div>
     </div>

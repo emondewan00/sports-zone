@@ -1,6 +1,18 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
-
+import useAuth from "../../hooks/useAuth";
+import useAxios from "../../hooks/useAxios";
 const MyClasses = () => {
+  const { currentUser } = useAuth();
+  const { axiosSecure } = useAxios();
+  const { data } = useQuery({
+    queryKey: ["myClasses", currentUser?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/classes/myClasses/${currentUser?.email}`);
+      return res.data;
+    },
+  });
+  console.log(data);
   return (
     <div className="max-w-4xl mx-auto">
       <h1 className="text-center text-3xl my-4">My Classes</h1>

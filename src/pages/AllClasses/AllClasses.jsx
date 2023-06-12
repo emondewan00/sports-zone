@@ -16,7 +16,9 @@ const AllClasses = () => {
     <div className="my-10">
       <div className="grid grid-cols-1 justify-items-center md:grid-cols-3 mx-auto max-w-4xl gap-4">
         {data.map((c) => (
-          <Card key={c._id} c={c} />
+          <Card key={c._id} c={c}>
+            
+          </Card>
         ))}
       </div>
     </div>

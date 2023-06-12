@@ -20,7 +20,7 @@ const NavBar = () => {
         <div className="flex justify-between items-center ">
           <Link
             to="/"
-            className="text-2xl hover:text-4xl delay-200 transition-all duration-300 ease-in-out  cursor-pointer"
+            className="text-2xl hover:text-4xl delay-200 transition-all duration-300 ease-in-out  font-serif cursor-pointer"
           >
             Sports Zone
           </Link>
