@@ -4,24 +4,24 @@ const CustomerReview = () => {
   const review = [
     {
       id: 1,
-      name: "Spider man",
-      img: "/img-gallary/gallary2.jpg",
+      name: "Sarah T.",
+      img: "/person-profile-icon.svg",
       review:
-        "The meal prepared by the chef was exquisite! Every dish was carefully crafted and full of flavor. The chef was also incredibly professional and attentive to our needs throughout the entire dining experience.",
+        "I enrolled my son in the Summer Camp Sports Academy, and it was an incredible experience for him. The academy offers a wide range of sports activities, including basketball, soccer, swimming, and more.",
     },
     {
       id: 2,
-      name: "Iron Man",
-      img: "/img-gallary/gallary3.jpg",
+      name: "John M.",
+      img: "/person-profile-icon.svg",
       review:
-        "I was blown away by the personal chef services provided by this chef. Not only was the food amazing, but the entire process was seamless and stress-free. I would highly recommend this chef for any special occasion or event.",
+        "My daughter had a fantastic time at the Summer Camp Sports Academy. She loves playing volleyball, and the academy provided her with top-level coaching and training. The coaches were knowledgeable .",
     },
     {
       id: 3,
-      name: " Batman",
-      img: "/img-gallary/gallary5.jpg",
+      name: "Emily L.",
+      img: "/person-profile-icon.svg",
       review:
-        "I have a lot of dietary restrictions and was worried about finding a chef who could accommodate my needs. This chef went above and beyond to create a menu that was not only delicious but also met all of my dietary requirements.",
+        "The Summer Camp Sports Academy exceeded my expectations. I enrolled my two children, ages 10 and 12, in the camp, and they had a blast. The variety of sports offered allowed them to explore different activities .",
     },
   ];
 

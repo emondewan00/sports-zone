@@ -3,6 +3,7 @@ import InstructorsCard from "../../shared/InstructorsCard/InstructorsCard";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useAxios from "../../hooks/useAxios";
+import { Helmet } from "react-helmet-async";
 
 const Instructors = () => {
   const { axiosSecure } = useAxios();
@@ -15,6 +16,9 @@ const Instructors = () => {
   });
   return (
     <div className="my-10">
+      <Helmet>
+        <title>Instructors | Sports Zone</title>
+      </Helmet>
       <div className="grid grid-cols-1 justify-items-center md:grid-cols-3 mx-auto max-w-4xl gap-4">
         {data.map((ins) => (
           <InstructorsCard key={ins._id} instructor={ins}>

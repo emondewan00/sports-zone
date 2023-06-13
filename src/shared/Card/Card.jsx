@@ -3,6 +3,7 @@ import React from "react";
 import useAxios from "../../hooks/useAxios";
 import Success from "../../message/Success";
 import useRole from "../../hooks/useRole";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ c, children }) => {
   const {
@@ -16,18 +17,19 @@ const Card = ({ c, children }) => {
   } = c || {};
   const { axiosSecure } = useAxios();
   const { role } = useRole();
-  const { data, mutate } = useMutation({
-    mutationKey: ["select"],
-    mutationFn: async (classId) => {
-      const res = await axiosSecure.post("/selectedClasses", { classId });
-      // if (res.status === 200) {
-      //   Success("success", "Class add as select");
-      // }
-      return res.data;
-    },
-  });
+  const navigate = useNavigate();
+
+  const selectHandler = async (classId) => {
+    if (role === undefined) {
+      return navigate("/login");
+    }
+    const res = await axiosSecure.post("/selectedClasses", { classId });
+    if (res.status === 200) {
+      Success("success", "Class add as select");
+    }
+  };
+
   const disable =
-    role === undefined ||
     role?.role === "admin" ||
     role?.role === "instructor" ||
     availableSeats === 0;
@@ -51,11 +53,16 @@ const Card = ({ c, children }) => {
         </ul>
         <div className="card-actions justify-end">
           <button
-            disabled={disable}
-            onClick={() => mutate(_id)}
-            className="px-5 bg-base-200 py-2 font-semibold hover:bg-base-300 rounded"
+            onClick={() => navigate("/login")}
+            disabled={role !== undefined}
           >
-            Select
+            <button
+              disabled={disable}
+              onClick={() => selectHandler(_id)}
+              className="px-5 bg-base-200 py-2 font-semibold hover:bg-base-300 rounded"
+            >
+              Select
+            </button>
           </button>
         </div>
       </div>

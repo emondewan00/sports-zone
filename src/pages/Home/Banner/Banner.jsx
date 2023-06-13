@@ -6,6 +6,7 @@ import PopularClass from "../PopularClass/PopularClass";
 import CustomerReview from "../Review/CustomerReview";
 import PopularInstructor from "../PopularInstructor/PopularInstructor";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Banner = () => {
   const slider = [
@@ -38,41 +39,46 @@ const Banner = () => {
   ];
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Home | Sports Zone</title>
+      </Helmet>
       <div>
-        <Swiper
-          pagination={{ dynamicBullets: true }}
-          navigation={true}
-          modules={[Pagination, Navigation]}
-          className="mySwiper"
-        >
-          {slider.map((s) => (
-            <SwiperSlide key={s.id}>
-              <div className=" md:h-[70vh]">
-                <img
-                  className=" w-full brightness-75 absolute object-fill object-center"
-                  src={s.img}
-                  alt=""
-                />
-                <div className="bg-white/20 flex justify-center items-center max-w-md mx-auto p-4 md:top-40 relative z-10">
-                  <div className="space-y-3">
-                    <h1 className="text-3xl text-white capitalize">
-                      {s.quote}
-                    </h1>
-                    <Link to="/allClass" className="btn btn-secondary">
-                      See Classes
-                    </Link>
+        <div>
+          <Swiper
+            pagination={{ dynamicBullets: true }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="mySwiper"
+          >
+            {slider.map((s) => (
+              <SwiperSlide key={s.id}>
+                <div className=" md:h-[70vh]">
+                  <img
+                    className=" w-full brightness-75 absolute object-fill object-center"
+                    src={s.img}
+                    alt=""
+                  />
+                  <div className="bg-white/20 flex justify-center items-center max-w-md mx-auto p-4 md:top-40 relative z-10">
+                    <div className="space-y-3">
+                      <h1 className="text-3xl text-white capitalize">
+                        {s.quote}
+                      </h1>
+                      <Link to="/allClass" className="btn btn-secondary">
+                        See Classes
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        <PopularClass />
+        <PopularInstructor />
+        <CustomerReview />
       </div>
-      <PopularClass />
-      <PopularInstructor />
-      <CustomerReview />
-    </div>
+    </>
   );
 };
 

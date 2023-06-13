@@ -18,12 +18,14 @@ import InstructorRoute from "./InstructorRoute";
 import UserRoute from "./UserRoute";
 import ManageUsers from "../pages/ManageUsers/ManageUsers";
 import MannageClasses from "../pages/ManageClasses/MannageClasses";
+import Dashbord from "../Layout/Dashbord";
+import Payment from "../pages/Payment/Payment";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    // errorElement: <Error />,
+    errorElement: <Error />,
     children: [
       { path: "/", element: <Banner /> },
       { path: "allClass", element: <AllClasses /> },
@@ -37,7 +39,7 @@ const router = createBrowserRouter([
     path: "/dashbord",
     element: (
       <PrivetRoute>
-        <SideNav />
+        <Dashbord />
       </PrivetRoute>
     ),
     children: [
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
         element: (
           <PrivetRoute>
             <DashbordHome />
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "payment/:id",
+        element: (
+          <PrivetRoute>
+            <Payment />
           </PrivetRoute>
         ),
       },
