@@ -27,7 +27,7 @@ const CustomerReview = () => {
 
   return (
     <div className="container mx-auto my-24 ">
-      <h1 className="text-4xl text-center my-8" >Customer Review</h1>
+      <h1 className="text-4xl text-center my-8" >Feedback</h1>
       <div className="flex flex-col md:flex-row justify-center items-center gap-x-8 ">
         {review.map((r) => (
           <div
