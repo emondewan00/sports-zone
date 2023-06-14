@@ -3,10 +3,11 @@ import React from "react";
 const Modal = () => {
   return (
     <>
-      <button className="btn" onClick={() => window.my_modal_5.showModal()}>
+      {/* Open the modal using ID.showModal() method */}
+      <button className="btn" onClick={() => window.my_modal_1.showModal()}>
         open modal
       </button>
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+      <dialog id="my_modal_1" className="modal">
         <form method="dialog" className="modal-box">
           <h3 className="font-bold text-lg">Hello!</h3>
           <p className="py-4">

@@ -32,18 +32,18 @@ const Login = () => {
       <Helmet>
         <title>Login | Sports Zone</title>
       </Helmet>
-      <div className="flex h-[90vh] justify-center items-center">
-        <div className="card flex-shrink-0 w-full max-w-sm mx-auto my-10 shadow-2xl bg-base-100">
+      <div className="flex h-[90vh] bg-[#1F2937] justify-center items-center">
+        <div className="rounded flex-shrink-0 w-full max-w-sm mx-auto my-10 shadow-2xl bg-white/5 text-white">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="card-body">
               <div className="form-control">
                 <label className="label" htmlFor="email">
-                  <span className="label-text">Email</span>
+                  <span className="label-text text-white">Email</span>
                 </label>
                 <input
                   type="text"
                   placeholder="email"
-                  className="input input-bordered"
+                  className="input input-bordered text-black"
                   name="email"
                   id="email"
                   {...register("email", { required: true })}
@@ -51,18 +51,18 @@ const Login = () => {
               </div>
               <div className="form-control">
                 <label className="label" htmlFor="password">
-                  <span className="label-text">Password</span>
+                  <span className="label-text text-white">Password</span>
                 </label>
                 <input
                   type="password"
                   placeholder="password"
-                  className="input input-bordered"
+                  className="input input-bordered text-black"
                   name="password"
                   id="password"
                   {...register("password", { required: true })}
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
+                  <a href="#" className="label-text text-white link link-hover">
                     Forgot password?
                   </a>
                 </label>

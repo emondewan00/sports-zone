@@ -7,9 +7,13 @@ const InstructorRoute = ({ children }) => {
   const { role, isLoading } = useRole();
   const { currentUser, loading } = useAuth();
   if (loading || isLoading) {
-    return <progress className="progress w-56"></progress>;
+    return (
+      <div className="flex justify-center items-center h-[95vh]">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   }
-  console.log(role)
+  console.log(role);
   if (currentUser && role?.role === "instructor") {
     return children;
   } else {

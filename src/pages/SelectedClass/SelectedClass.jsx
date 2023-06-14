@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "../../shared/Card/Card";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
@@ -19,6 +18,7 @@ const SelectedClass = () => {
       return res.data;
     },
   });
+
   const { data: payRes, mutate } = useMutation({
     mutationKey: ["select"],
     mutationFn: async (classId) => {
@@ -26,6 +26,7 @@ const SelectedClass = () => {
       return res.data;
     },
   });
+  
   const { data: deleRes, mutate: deleMutate } = useMutation({
     mutationKey: ["select"],
     mutationFn: async (id) => {

@@ -10,12 +10,16 @@ const DashbordHome = () => {
         <title>Dashbord Home | Sports Zone</title>
       </Helmet>
       <div className="flex justify-center items-center h-[95vh]">
-        <div className=" shadow-lg max-w-md p-6 rounded">
-          <h1 className="text-3xl capitalize">
-            Wellcome {role?.role} Dashbord!
-          </h1>
-          <h1 className="text-2xl mt-2">Hallo,{role?.name}</h1>
-        </div>
+        {role?.role !== undefined ? (
+          <div className=" shadow-lg max-w-md p-6 rounded">
+            <h1 className="text-3xl capitalize">
+              Wellcome {role?.role} Dashbord!
+            </h1>
+            <h1 className="text-2xl mt-2">Hallo,{role?.name}</h1>
+          </div>
+        ) : (
+          <span className="loading loading-spinner loading-lg"></span>
+        )}
       </div>
     </>
   );

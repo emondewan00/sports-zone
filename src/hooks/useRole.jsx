@@ -3,20 +3,13 @@ import React, { useEffect, useState } from "react";
 import useAxios from "./useAxios";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
+import { useNavigate } from "react-router-dom";
 
 const useRole = () => {
-  const { currentUser } = useAuth();
-  const { axiosSecure } = useAxios();
+  const { currentUser, logOut } = useAuth();
+  const navigate = useNavigate();
   const [role, setRole] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  // const { data:role, isLoading } = useQuery({
-  //   queryKey: ["role", currentUser?.email],
-  //   // enabled:!!currentUser?.email && !localStorage.getItem("access_token"),
-  //   queryFn: async () => {
-  //     const res = await axiosSecure(`/users/single/${currentUser?.email}`);
-  //     return res.data[0];
-  //   },
-  // });
   const token = localStorage.getItem("access_token");
   useEffect(() => {
     fetch(`http://localhost:4999/users/single/${currentUser?.email}`, {
@@ -28,13 +21,16 @@ const useRole = () => {
       .then((data) => {
         setIsLoading(false);
         setRole(data[0]);
+        if (data.error) {
+          logOut();
+          navigate("/login");
+        }
       })
       .catch((err) => {
         setIsLoading(false);
-        console.log(err);
       });
-  }, [token, currentUser]);
-  
+  }, [token, currentUser, logOut, navigate]);
+
   return { role, isLoading };
 };
 

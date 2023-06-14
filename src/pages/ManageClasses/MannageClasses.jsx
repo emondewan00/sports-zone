@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import { Helmet } from "react-helmet-async";
+import Modal from "../Modal/Modal";
 
 const MannageClasses = () => {
   const { axiosSecure } = useAxios();
@@ -12,12 +13,38 @@ const MannageClasses = () => {
       return res.data;
     },
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const { data: updateClass, mutate } = useMutation({
+    mutationFn: async (doc) => {
+      const res = await axiosSecure.patch(`/classes/${doc.id}`, {
+        status: doc.status,
+        feedback: feedback,
+      });
+      return res.data;
+    },
+  });
+  const { data: feedback, mutate: feedbackMutate } = useMutation({
+    mutationFn: async (doc) => {
+      const res = await axiosSecure.patch(`/classes/${doc.id}`, {
+        feedback: doc.feedback,
+      });
+      return res.data;
+    },
+  });
   return (
     <>
       <Helmet>
         <title>Manage Class | Sports Zone</title>
       </Helmet>
-      <div className="max-w-4xl mx-auto">
+      <div className="px-4">
         <h1 className="text-center text-3xl my-4">All Classes</h1>
         <div className="overflow-x-auto">
           <table className="table">
@@ -29,7 +56,7 @@ const MannageClasses = () => {
                 <th>Available seats</th>
                 <th>Price</th>
                 <th>Status</th>
-                <th>Edit</th>
+                <th>Feedback</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -64,26 +91,28 @@ const MannageClasses = () => {
                   </th>
                   <th>
                     <select
-                      name="gender"
                       className="  p-2 outline-none w-full "
-                      id="gender"
                       defaultValue={c.status}
+                      disabled={c.status !== "pending"}
+                      onChange={(e) =>
+                        mutate({ status: e.target.value, id: c._id })
+                      }
                     >
                       <option value="aprove">Aprove</option>
                       <option value="reject">Reject</option>
                       <option value="pending">Pending</option>
                     </select>
                   </th>
-                  {/* <td>
-                  <button onClick={() => mutate(c._id)} className="btn">
-                    <FaTrash />
-                  </button>
-                </td>
-                <td>
-                  <button className="btn">
-                    <FaPen />
-                  </button>
-                </td> */}
+                  <td>
+                    {/* <textarea
+                      className="textarea textarea-secondary"
+                      placeholder="Feedback"
+                      disabled={c.status !== "reject"}
+                      onBlur={(e) =>
+                        feedbackMutate({ feedback: e.target.value, id: c._id })
+                      }
+                    ></textarea> */}
+                  </td>
                 </tr>
               ))}
             </tbody>

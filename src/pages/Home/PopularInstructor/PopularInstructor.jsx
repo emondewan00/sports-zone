@@ -8,7 +8,9 @@ const PopularInstructor = () => {
   const { data = [] } = useQuery({
     queryKey: ["popularInstructors"],
     queryFn: async () => {
-      const res = await axiosSecure("/users/popularInstructor");
+      const res = await axiosSecure(
+        "/users/popularInstructor?sort=desc&limit=6"
+      );
       return res.data;
     },
   });
@@ -18,7 +20,10 @@ const PopularInstructor = () => {
       <div className="grid grid-cols-1 justify-items-center md:grid-cols-3 mx-auto max-w-4xl gap-4">
         {data.map((ins) => (
           <InstructorsCard key={ins._id} instructor={ins}>
-            <Link to="/instructors" className="px-5 bg-base-200 py-2 font-semibold hover:bg-base-300 rounded">
+            <Link
+              to="/instructors"
+              className="px-5 bg-base-200 py-2 font-semibold hover:bg-base-300 rounded"
+            >
               All Instructors
             </Link>
           </InstructorsCard>

@@ -7,7 +7,11 @@ const PrivetRoute = ({ children }) => {
   const { loading, currentUser } = useAuth();
   const location = useLocation();
   if (loading) {
-    return <progress className="progress w-56"></progress>;
+    return (
+      <div className="flex justify-center items-center h-[95vh]">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   }
 
   if (currentUser) {

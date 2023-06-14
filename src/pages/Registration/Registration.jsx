@@ -59,8 +59,8 @@ const Registration = () => {
       <Helmet>
         <title>Registration | Sports Zone</title>
       </Helmet>
-      <div className=" h-[80vh] my-10 px-4 md:px-0 mx-auto relative">
-        <div className=" bg-gray-200 max-w-3xl mx-auto shadow-md px-6 md:px-20 py-10">
+      <div className=" h-[80vh]  px-4 md:px-0 mx-auto pt-6 bg-[#1F2937] relative">
+        <div className=" bg-white/5 text-white max-w-3xl mx-auto shadow-md px-6 md:px-20 py-10">
           <h1 className="text-3xl text-center my-4 ">SingUp</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid  grid-cols-1 md:grid-cols-3 gap-4">
@@ -68,7 +68,7 @@ const Registration = () => {
                 <label htmlFor="name">Name</label>
                 <input
                   type="text"
-                  className="  p-2 outline-none w-full "
+                  className="  p-2 outline-none w-full text-black"
                   name="name"
                   id="name"
                   {...register("name", { required: true })}
@@ -78,7 +78,7 @@ const Registration = () => {
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
-                  className="  p-2 outline-none w-full "
+                  className="  p-2 outline-none w-full text-black"
                   name="email"
                   id="email"
                   {...register("email", { required: true })}
@@ -88,7 +88,7 @@ const Registration = () => {
                 <label htmlFor="gender">Gender</label>
                 <select
                   name="gender"
-                  className="  p-2 outline-none w-full "
+                  className="  p-2 outline-none w-full text-black"
                   id="gender"
                   defaultValue=""
                   {...register("gender", { required: true })}
@@ -105,7 +105,7 @@ const Registration = () => {
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
-                  className="  p-2 outline-none w-full "
+                  className="  p-2 outline-none w-full text-black"
                   name="password"
                   id="password"
                   {...register("password", {
@@ -120,7 +120,7 @@ const Registration = () => {
                 <label htmlFor="conFirmPass">Confirm Password</label>
                 <input
                   type="password"
-                  className="  p-2 outline-none w-full "
+                  className="  p-2 outline-none w-full text-black"
                   name="conFirmPass"
                   {...register("conFirmPass", { required: true })}
                   id="conFirmPass"
@@ -130,7 +130,7 @@ const Registration = () => {
                 <label htmlFor="address">Address</label>
                 <input
                   type="text"
-                  className="  p-2 outline-none w-full "
+                  className="  p-2 outline-none w-full text-black"
                   name="address"
                   id="address"
                   {...register("address")}
@@ -142,7 +142,7 @@ const Registration = () => {
                 <label htmlFor="photo">Photo URL</label>
                 <input
                   type="url"
-                  className="  p-2 outline-none w-full "
+                  className="  p-2 outline-none w-full text-black"
                   {...register("photo", { required: true })}
                   name="photo"
                   id="photo"
@@ -152,7 +152,7 @@ const Registration = () => {
                 <label htmlFor="phone">Phone Number</label>
                 <input
                   type="number"
-                  className="  p-2 outline-none w-full "
+                  className="  p-2 outline-none w-full text-black"
                   {...register("phone", { minLength: 11, maxLength: 11 })}
                   name="phone"
                   id="phone"

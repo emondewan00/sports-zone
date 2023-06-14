@@ -20,6 +20,7 @@ import ManageUsers from "../pages/ManageUsers/ManageUsers";
 import MannageClasses from "../pages/ManageClasses/MannageClasses";
 import Dashbord from "../Layout/Dashbord";
 import Payment from "../pages/Payment/Payment";
+import PaymentHistory from "../pages/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +106,14 @@ const router = createBrowserRouter([
           <AdminRoute>
             <MannageClasses />
           </AdminRoute>
+        ),
+      },
+      {
+        path: "paymentHistorys",
+        element: (
+          <PrivetRoute>
+            <PaymentHistory />
+          </PrivetRoute>
         ),
       },
     ],
