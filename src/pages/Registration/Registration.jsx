@@ -36,14 +36,17 @@ const Registration = () => {
       .then((res) => {
         updateUser(res.user, name, photo, address, phone, gender);
         axios
-          .post("https://summer-camp-school-miremon5222-gmailcom.vercel.app/users", {
-            name,
-            address,
-            gender,
-            email,
-            phone,
-            photo,
-          })
+          .post(
+            "https://summer-camp-school-miremon5222-gmailcom.vercel.app/users",
+            {
+              name,
+              address,
+              gender,
+              email,
+              phone,
+              photo,
+            }
+          )
           .then((res) => {
             console.log(res);
             Success("success", "Account created successfully!");
@@ -52,14 +55,17 @@ const Registration = () => {
           })
           .catch((err) => console.log(err));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setPassErr(err.message);
+        console.log(err);
+      });
   };
   return (
     <>
       <Helmet>
         <title>Registration | Sports Zone</title>
       </Helmet>
-      <div className=" h-[80vh]  px-4 md:px-0 mx-auto pt-6 bg-[#1F2937] relative">
+      <div className=" md:h-[80vh]  px-4 md:px-0 mx-auto py-6  bg-[#1F2937] ">
         <div className=" bg-white/5 text-white max-w-3xl mx-auto shadow-md px-6 md:px-20 py-10">
           <h1 className="text-3xl text-center my-4 ">SingUp</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
