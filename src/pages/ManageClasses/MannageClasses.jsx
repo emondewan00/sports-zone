@@ -6,28 +6,21 @@ import Modal from "../Modal/Modal";
 
 const MannageClasses = () => {
   const { axiosSecure } = useAxios();
-  const { data = [] } = useQuery({
+  const { data = [], refetch } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
       const res = await axiosSecure("/classes");
       return res.data;
     },
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
   const { data: updateClass, mutate } = useMutation({
     mutationFn: async (doc) => {
       const res = await axiosSecure.patch(`/classes/${doc.id}`, {
         status: doc.status,
         feedback: feedback,
       });
+      refetch();
       return res.data;
     },
   });
@@ -36,6 +29,7 @@ const MannageClasses = () => {
       const res = await axiosSecure.patch(`/classes/${doc.id}`, {
         feedback: doc.feedback,
       });
+      refetch();
       return res.data;
     },
   });
