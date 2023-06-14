@@ -57,7 +57,6 @@ const MannageClasses = () => {
                 <th>Price</th>
                 <th>Status</th>
                 <th>Feedback</th>
-                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -104,14 +103,14 @@ const MannageClasses = () => {
                     </select>
                   </th>
                   <td>
-                    {/* <textarea
+                    <textarea
                       className="textarea textarea-secondary"
                       placeholder="Feedback"
                       disabled={c.status !== "reject"}
                       onBlur={(e) =>
                         feedbackMutate({ feedback: e.target.value, id: c._id })
                       }
-                    ></textarea> */}
+                    ></textarea>
                   </td>
                 </tr>
               ))}

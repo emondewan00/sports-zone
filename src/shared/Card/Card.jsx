@@ -1,11 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import Success from "../../message/Success";
-import useRole from "../../hooks/useRole";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
-const Card = ({ c, children }) => {
+const Card = ({ c }) => {
   const {
     _id,
     image,
@@ -16,9 +16,25 @@ const Card = ({ c, children }) => {
     availableSeats,
   } = c || {};
   const { axiosSecure } = useAxios();
-  const { role } = useRole();
-  const navigate = useNavigate();
+  const { currentUser } = useAuth();
+  const [role, setRole] = useState({});
 
+  const token = localStorage.getItem("access_token");
+  useEffect(() => {
+    fetch(
+      `https://summer-camp-school-miremon5222-gmailcom.vercel.app/users/single/${currentUser?.email}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setRole(data[0]);
+      })
+      .catch((err) => {});
+  }, [token, currentUser]);
   const selectHandler = async (classId) => {
     if (role === undefined) {
       return <Navigate to="/login" />;

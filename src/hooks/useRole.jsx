@@ -12,11 +12,14 @@ const useRole = () => {
   const [isLoading, setIsLoading] = useState(true);
   const token = localStorage.getItem("access_token");
   useEffect(() => {
-    fetch(`http://localhost:4999/users/single/${currentUser?.email}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `https://summer-camp-school-miremon5222-gmailcom.vercel.app/users/single/${currentUser?.email}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setIsLoading(false);

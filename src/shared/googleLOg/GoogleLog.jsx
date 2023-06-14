@@ -13,15 +13,18 @@ const GoogleLog = () => {
       .then((res) => {
         const { displayName, photoURL, phoneNumber, email } = res.user;
         axios
-          .post("http://localhost:4999/users", {
-            name: displayName,
-            photo: photoURL,
-            phone: phoneNumber,
-            email,
-          })
-          .then((res) =>
-            localStorage.setItem("access_token", res.data.access_token)
+          .post(
+            "https://summer-camp-school-miremon5222-gmailcom.vercel.app/users",
+            {
+              name: displayName,
+              photo: photoURL,
+              phone: phoneNumber,
+              email,
+            }
           )
+          .then((res) => {
+            localStorage.setItem("access_token", res.data.access_token);
+          })
           .catch((err) => console.log(err));
         navigate(from);
       })

@@ -16,7 +16,6 @@ const PaymentHistory = () => {
         .catch((err) => console.log(err));
     }
   }, [role, axiosSecure]);
-  console.log(paymentHistory);
   return (
     <>
       <Helmet>

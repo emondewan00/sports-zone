@@ -18,7 +18,7 @@ const Login = () => {
     signInWithEmailPass(email, password)
       .then((res) => {
         axios
-          .post("http://localhost:4999/users", { email })
+          .post("https://summer-camp-school-miremon5222-gmailcom.vercel.app/users", { email })
           .then((res) => {
             navigate(from);
             localStorage.setItem("access_token", res.data.access_token);

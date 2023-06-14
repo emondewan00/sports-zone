@@ -19,16 +19,14 @@ const ManageUsers = () => {
       return res.data;
     },
   });
-  const {
-    mutate,
-    data: deleteRes,
-    isLoading: deleteLoading,
-  } = useMutation({
-    mutationFn: async (id) => {
-      const res = await axiosSecure.delete(`/users/${id}`);
+  const { mutate, data: updateRes } = useMutation({
+    mutationFn: async ({ id, role }) => {
+      const res = await axiosSecure.patch(`/users/${id}`, {
+        role,
+      });
       if (res.status === 200) {
         refetch();
-        Success("success", "User Deleted SuccessFully!");
+        Success("success", "User Updated SuccessFully!");
       }
       return res.data;
     },
@@ -48,7 +46,7 @@ const ManageUsers = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>gender</th>
-                <th>Action</th>
+                <th>Role</th>
               </tr>
             </thead>
             <tbody>
@@ -77,11 +75,20 @@ const ManageUsers = () => {
                       {user.gender}
                     </p>
                   </td>
-                  <th>
-                    <button onClick={() => mutate(user._id)} className="btn">
-                      <FaTrash />
-                    </button>
-                  </th>
+                  <td>
+                    <select
+                      className="  p-2 outline-none w-full "
+                      defaultValue={user.role}
+                      disabled={user.role !== "user"}
+                      onChange={(e) =>
+                        mutate({ id: user._id, role: e.target.value })
+                      }
+                    >
+                      <option value="user">User</option>
+                      <option value="instructor">Instructor</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </td>
                 </tr>
               ))}
             </tbody>

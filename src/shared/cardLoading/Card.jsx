@@ -4,7 +4,7 @@ const Card = () => {
   return (
     <div
       role="status"
-      className="max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700 w-[360px] "
+      className="w-64 p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700  "
     >
       <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700">
         <svg
