@@ -158,6 +158,7 @@ const Registration = () => {
                 <label htmlFor="phone">Phone Number</label>
                 <input
                   type="number"
+                  placeholder="to creat give me unique number"
                   className="  p-2 outline-none w-full text-black"
                   {...register("phone", { minLength: 11, maxLength: 11 })}
                   name="phone"
