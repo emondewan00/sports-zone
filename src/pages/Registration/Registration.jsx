@@ -37,7 +37,7 @@ const Registration = () => {
         updateUser(res.user, name, photo, address, phone, gender);
         axios
           .post(
-            "https://summer-camp-school-miremon5222-gmailcom.vercel.app/users",
+            "http://localhost:4999/users",
             {
               name,
               address,
